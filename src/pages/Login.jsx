@@ -20,12 +20,12 @@ const Login = () => {
         </h1>
         <h3 className="text-xl">Login to your account</h3>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-5">
           <Input
             type="email"
             placeholder="Email"
             {...register("email", { required: "Email is required" })}
-            className="w-full py-6 text-gray-900 focus-visible:ring-0"
+            className="w-full py-5 text-gray-900 focus-visible:ring-0"
           />
           {errors.email && (
             <span className="text-red-500 text-xs">{errors.email.message}</span>
@@ -34,28 +34,32 @@ const Login = () => {
             type="password"
             placeholder="Password"
             {...register("password", { required: "Password is required" })}
-            className="w-full py-6 text-gray-900 focus-visible:ring-0"
+            className="w-full py-5 text-gray-900 focus-visible:ring-0"
           />
           {errors.password && (
             <span className="text-red-500 text-xs">
               {errors.password.message}
             </span>
           )}
-          <div className="flex flex-wrap justify-between pt-2 gap-5">
-            <Button type="submit" size="lg">
+          <div className="w-full">
+            <Button type="submit" size="lg" className="w-full">
               Log in
             </Button>
+          </div>
+          <div className="flex flex-wrap justify-between pt-2 gap-5 text-sm">
+            <div>
+              <span className="text-gray-600">
+                Don&apos;t have an account?{" "}
+              </span>{" "}
+              <Link to="/signup" className="text-primary hover:underline">
+                Sign up
+              </Link>
+            </div>
             <Link
               to="/forgot-password"
-              className="text-red-500 text-sm hover:underline"
+              className="text-red-500 hover:underline"
             >
               Forgot your password?
-            </Link>
-          </div>
-          <div className="text-sm w-full text-center">
-            <span className="text-gray-600">Don&apos;t have an account? </span>{" "}
-            <Link to="/signup" className="text-primary hover:underline">
-              Sign up
             </Link>
           </div>
         </form>

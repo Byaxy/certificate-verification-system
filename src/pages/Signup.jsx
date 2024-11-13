@@ -19,7 +19,7 @@ const Signup = () => {
         </h1>
         <h3 className="text-xl">Create your new account</h3>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-5">
           <div className="flex flex-col sm:flex-row gap-5">
             <div className="w-full">
               <Input
@@ -28,7 +28,7 @@ const Signup = () => {
                 {...register("firstName", {
                   required: "First Name is required",
                 })}
-                className="w-full py-6 text-gray-900 focus-visible:ring-0"
+                className="w-full py-5 text-gray-900 focus-visible:ring-0"
               />
               {errors.firstName && (
                 <span className="text-red-500 text-xs">
@@ -41,7 +41,7 @@ const Signup = () => {
                 type="lastName"
                 placeholder="Last Name"
                 {...register("lastName", { required: "Last Name is required" })}
-                className="w-full py-6 text-gray-900 focus-visible:ring-0"
+                className="w-full py-5 text-gray-900 focus-visible:ring-0"
               />
               {errors.lastName && (
                 <span className="text-red-500 text-xs">
@@ -54,7 +54,7 @@ const Signup = () => {
             type="email"
             placeholder="Email"
             {...register("email", { required: "Email is required" })}
-            className="w-full py-6 text-gray-900 focus-visible:ring-0"
+            className="w-full py-5 text-gray-900 focus-visible:ring-0"
           />
           {errors.email && (
             <span className="text-red-500 text-xs">{errors.email.message}</span>
@@ -63,7 +63,7 @@ const Signup = () => {
             type="password"
             placeholder="Password"
             {...register("password", { required: "Password is required" })}
-            className="w-full py-6 text-gray-900 focus-visible:ring-0"
+            className="w-full py-5 text-gray-900 focus-visible:ring-0"
           />
           {errors.password && (
             <span className="text-red-500 text-xs">
@@ -71,16 +71,16 @@ const Signup = () => {
             </span>
           )}
 
-          <div className="flex flex-wrap justify-between items-end pt-2 gap-5">
-            <Button type="submit" size="lg">
+          <div className="w-full">
+            <Button type="submit" size="lg" className="w-full">
               Sign up
             </Button>
-            <div className="text-sm">
-              <span className="text-gray-600">Already have an account? </span>{" "}
-              <Link to="/login" className="text-primary hover:underline">
-                Log in
-              </Link>
-            </div>
+          </div>
+          <div className="text-sm">
+            <span className="text-gray-600">Already have an account? </span>{" "}
+            <Link to="/login" className="text-primary hover:underline">
+              Log in
+            </Link>
           </div>
         </form>
       </div>

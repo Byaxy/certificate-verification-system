@@ -29,7 +29,7 @@ const ForgotPassword = () => {
               type="email"
               placeholder="Email"
               {...register("email", { required: "Email is required" })}
-              className="w-full py-6 text-gray-900 focus-visible:ring-0"
+              className="w-full py-5 text-gray-900 focus-visible:ring-0"
             />
             {errors.email && (
               <span className="text-red-500 text-xs">
@@ -41,7 +41,7 @@ const ForgotPassword = () => {
                 Send Reset Link
               </Button>
               <div className="text-gray-600 text-sm">OR</div>
-              <Link to="/" className="text-red-500 hover:underline -mt-1">
+              <Link to="/" className="text-primary hover:underline -mt-1">
                 Back to Login
               </Link>
             </div>
