@@ -1,20 +1,16 @@
 /* eslint-disable react/prop-types */
 import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ children, isAdmin }) => {
+const PrivateRoute = ({ children }) => {
   // const { isLoggedIn, isAdmin: userIsAdmin } = useAuth();
   const isLoggedIn = true;
-  const userIsAdmin = true;
+  const isAdmin = false;
 
   if (!isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
-  if (isAdmin && !userIsAdmin) {
-    return <Navigate to="/student" />;
-  }
-
-  if (!isAdmin && userIsAdmin) {
+  if (isAdmin && isLoggedIn) {
     return <Navigate to="/admin" />;
   }
 

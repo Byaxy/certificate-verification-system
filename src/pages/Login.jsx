@@ -14,7 +14,7 @@ const Login = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="w-full md:w-1/2 max-w-xl mx-auto px-5 flex flex-col gap-5 items-center justify-center">
+      <div className="w-full lg:w-1/2 max-w-xl mx-auto px-5 flex flex-col gap-5 items-center justify-center">
         <h1 className="text-3xl text-center tracking-tight font-bold bg-gradient-to-r to-primary from-gray-900 bg-clip-text text-transparent">
           Certificate Verification System
         </h1>
@@ -43,10 +43,10 @@ const Login = () => {
           )}
           <div className="w-full">
             <Button type="submit" size="lg" className="w-full">
-              Log in
+              Login
             </Button>
           </div>
-          <div className="flex flex-wrap justify-between pt-2 gap-5 text-sm">
+          <div className="flex flex-col-reverse sm:flex-row justify-between pt-2 gap-5 text-sm">
             <div>
               <span className="text-gray-600">
                 Don&apos;t have an account?{" "}
@@ -64,8 +64,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div className="hidden md:block w-1/2 bg-gray-100">
-        {/* Add your image or content here */}
+      <div className="hidden lg:block w-1/2 bg-gray-100">
         <img
           src={loginImage}
           alt="Login Illustration"

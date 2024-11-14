@@ -13,7 +13,7 @@ const Signup = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <div className="flex h-screen">
-      <div className="w-full md:w-1/2 max-w-xl mx-auto px-5 flex flex-col gap-5 items-center justify-center">
+      <div className="w-full lg:w-1/2 max-w-xl mx-auto px-5 flex flex-col gap-5 items-center justify-center">
         <h1 className="text-3xl text-center tracking-tight font-bold bg-gradient-to-r to-primary from-gray-900 bg-clip-text text-transparent">
           Certificate Verification System
         </h1>
@@ -84,8 +84,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
-      <div className="hidden md:block w-1/2 bg-gray-100">
-        {/* Add your image or content here */}
+      <div className="hidden lg:block w-1/2 bg-gray-100">
         <img
           src={loginImage}
           alt="Login Illustration"
