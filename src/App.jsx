@@ -13,6 +13,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
 import Certificate from "./pages/Certificate";
 import Header from "./components/Header";
+import CertificateSection from "./pages/AdminCertificate/CertificateSection";
+import Dashboard from "./pages/Dashboard/Dashboard";
 //import Footer from "./components/Footer";
 
 const App = () => {
@@ -28,7 +30,11 @@ const App = () => {
               <AdminDashboard />
             </PrivateRoute>
           }
-        />
+        >
+          <Route index element={<Dashboard/>} />
+          <Route path="certificates" element={<CertificateSection/>} />
+
+        </Route>
         <Route path="/verify-certificate" element={<VerifyCertificate />} />
         <Route
           path="/verify-certificate/:certificateId"
