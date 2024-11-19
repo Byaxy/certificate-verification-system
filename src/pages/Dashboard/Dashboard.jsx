@@ -1,13 +1,9 @@
-import DashboardHeader from "..//Dashboard/DashboardHeader"
 import DashboardContent from "./DashboardContent";
-import DashboardSidebar from "./DashboardSidebar";
 
 const Dashboard = () => {
     return (
       <div className="h-screen flex flex-col">
-        <DashboardHeader/>
-        <div className="flex flex-grow">
-          <DashboardSidebar/>
+        <div className="flex flex-grow">  
           <DashboardContent/>
         </div>
       </div>

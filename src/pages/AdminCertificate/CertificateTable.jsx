@@ -20,15 +20,15 @@ const CertificateTable = ({ certificates, onEdit, onDelete }) => {
             <td className="px-4 py-2">{certificate.name}</td>
             <td className="px-4 py-2">{certificate.issuer}</td>
             <td className="px-4 py-2">{certificate.dateIssued}</td>
-            <td className="px-4 py-2">
+            <td className="px-4 py-2 flex items-center justify-center">
               <button
-                className="bg-green-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 mr-4 rounded"
                 onClick={() => onEdit(certificate)}
               >
                 Edit
               </button>
               <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
                 onClick={() => onDelete(certificate.id)}
               >
                 Delete

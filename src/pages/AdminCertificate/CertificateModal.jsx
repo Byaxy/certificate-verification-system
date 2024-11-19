@@ -32,7 +32,7 @@ const CertificateModal = ({ certificate, onClose, onSave }) => {
       className="fixed top-0 left-0 w-full h-full flex items-center justify-center"
       style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
     >
-      <div className="bg-white p-4 rounded shadow-md w-1/2">
+      <div className="bg-white p-4 rounded shadow-md md:w-1/2 w-[90%]">
         <h2 className="text-lg font-bold mb-4">
           {certificate.id ? 'Edit Certificate' : 'Add Certificate'}
         </h2>

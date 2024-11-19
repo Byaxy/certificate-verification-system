@@ -26,7 +26,7 @@ const Header = () => {
       {/* Max width container */}
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         {/* Header content */}
-        <div className="flex flex-row items-center justify-between py-3 gap-4">
+        <div className="flex flex-row items-center justify-between sm:py-3 py-1 gap-4">
           {/* Logo Section */}
           <Link to="/" className="flex items-center">
             <span className="font-bold text-xl bg-gradient-to-r to-primary from-gray-900 bg-clip-text text-transparent">
