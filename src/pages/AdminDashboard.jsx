@@ -6,7 +6,7 @@ const AdminDashboard = () => {
   return (
     <div className="relative">
       <DashboardHeader />
-      <div className="h-[100dvh] hidden  top-0 absolute right-0 ">
+      <div className="h-[100dvh] md:hidden block top-0 absolute right-0 ">
         <DashboardSidebar />
       </div>
       <Outlet />
