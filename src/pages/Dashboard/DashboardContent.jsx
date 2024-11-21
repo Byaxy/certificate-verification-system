@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RecentActivity from "./RecentActivity";
 import "./Loader.css"
 import HowitWorks from "../QuickGuide/HowitWorks";
+import BulkUpload from "../../components/BulkUpload/BulkUpload";
 
 const DashboardContent = () => {
   const [totalCertificates, setTotalCertificates] = useState(0);
@@ -60,8 +61,12 @@ const DashboardContent = () => {
             <p className="sm:text-2xl text-xl">20</p>
           </div>
         </div>
+        
         <div className="mb-4">
           <RecentActivity />
+        </div>
+        <div className="my-10">
+          <BulkUpload/>
         </div>
         <div>
           <HowitWorks/>

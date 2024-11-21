@@ -3,13 +3,13 @@
 const QuickGuide = () =>{
   return (
     <div className="max-w-4xl mx-auto p-6 my-8 bg-white shadow-md rounded-lg">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+      <h1 className="sm:text-3xl text-2xl font-bold text-gray-800 sm:mb-6 mb-3">
         Quick Guide for Administrators
       </h1>
 
       {/* Section 1: Certificate Management */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+        <h2 className="sm:text-2xl text-xl font-semibold text-blue-600 mb-4">
           Certificate Management
         </h2>
         <p className="text-gray-700 mb-2">
@@ -34,7 +34,7 @@ const QuickGuide = () =>{
 
       {/* Section 2: Monitoring Activity */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+        <h2 className="sm:text-2xl text-xl font-semibold text-blue-600 mb-4">
           Monitoring Activity
         </h2>
         <p className="text-gray-700 mb-2">
@@ -52,7 +52,7 @@ const QuickGuide = () =>{
 
       {/* Section 3: Analytics & Insights */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+        <h2 className="sm:text-2xl text-xl font-semibold text-blue-600 mb-4">
           Analytics & Insights
         </h2>
         <p className="text-gray-700 mb-2">
@@ -70,7 +70,7 @@ const QuickGuide = () =>{
 
       {/* Section 4: User Roles & Security */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+        <h2 className="sm:text-2xl text-xl font-semibold text-blue-600 mb-4">
           User Roles & Security
         </h2>
         <p className="text-gray-700 mb-2">
@@ -88,7 +88,7 @@ const QuickGuide = () =>{
 
       {/* Section 5: Common Operations */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+        <h2 className="sm:text-2xl text-xl font-semibold text-blue-600 mb-4">
           Common Operations
         </h2>
         <p className="text-gray-700 mb-2">
@@ -109,7 +109,7 @@ const QuickGuide = () =>{
 
       {/* Help Section */}
       <section>
-        <h2 className="text-2xl font-semibold text-blue-600 mb-4">
+        <h2 className="sm:text-2xl text-xl font-semibold text-blue-600 mb-4">
           Need Help?
         </h2>
         <p className="text-gray-700">
