@@ -16,6 +16,7 @@ import Header from "./components/Header";
 import CertificateSection from "./pages/AdminCertificate/CertificateSection";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Settings from "./pages/AdminSettings/Settings";
+import QuickGuide from "./pages/QuickGuide/QuickGuide";
 //import Footer from "./components/Footer";
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
           <Route index element={<Dashboard/>} />
           <Route path="certificates" element={<CertificateSection/>} />
           <Route path="settings" element={<Settings/>} />
+          <Route path="quick_guide" element={<QuickGuide/>} />
         </Route>
         <Route path="/verify-certificate" element={<VerifyCertificate />} />
         <Route

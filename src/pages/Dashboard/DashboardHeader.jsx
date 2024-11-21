@@ -11,17 +11,17 @@ const DashboardHeader = ({ active, OpenMenu, CloseMenu }) => {
         </div>
         <nav className="">
           <ul className="md:flex hidden items-center">
-            <Link to={"/"}>
-              <li className="ml-4">Home</li>
-            </Link>
             <Link to={"/admin"}>
-              <li className="ml-4">Dashboard</li>
+              <li className="ml-4 hover:scale-105 transition-all">Dashboard</li>
             </Link>
             <Link to={"/admin/certificates"}>
-              <li className="ml-4">Certificates</li>
+              <li className="ml-4 hover:scale-105 transition-all">Certificates</li>
+            </Link>
+            <Link to={"/admin/quick_guide"}>
+              <li className="ml-4 hover:scale-105 transition-all">Quick Guide</li>
             </Link>
             <Link to={"/admin/settings"}>
-              <li className="ml-4">Settings</li>
+              <li className="ml-4 hover:scale-105 transition-all">Settings</li>
             </Link>
           </ul>
         </nav>

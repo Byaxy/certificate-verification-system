@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RecentActivity from "./RecentActivity";
 import "./Loader.css"
+import HowitWorks from "../QuickGuide/HowitWorks";
 
 const DashboardContent = () => {
   const [totalCertificates, setTotalCertificates] = useState(0);
@@ -61,6 +62,9 @@ const DashboardContent = () => {
         </div>
         <div className="mb-4">
           <RecentActivity />
+        </div>
+        <div>
+          <HowitWorks/>
         </div>
       </div>
     </main>

@@ -3,20 +3,25 @@ import { Link } from "react-router-dom";
 
 const DashboardSidebar = ({close}) => {
     return (
-      <aside className="bg-transaprent shadow-md backdrop-blur-md text-black font-semibold mt-5 p-4 w-64 h-full">
-        <ul>
+      <aside className="bg-transaprent rounded shadow-md bg-slate-900 text-white font-semibold  p-4 w-64 h-full">
+        <ul className="py-10">
           <li className="mb-4" onClick={close}>
-            <Link to={"/admin"} className="text-gray-600 hover:text-blue-800">
+            <Link to={"/admin"} className="te hover:text-blue-800">
               Dashboard
             </Link>
           </li>
           <li className="mb-4" onClick={close}>
-          <Link to={"/admin/certificates"} className="text-gray-600 hover:text-blue-800">
+          <Link to={"/admin/certificates"} className="hover:text-blue-800">
               All Certificates
             </Link>
           </li>
           <li className="mb-4" onClick={close}>
-          <Link to={"/admin/settings"} className="text-gray-600 hover:text-blue-800">
+          <Link to={"/admin/quick_guide"} className="hover:text-blue-800">
+              Quick Guide
+            </Link>
+          </li>
+          <li className="mb-4" onClick={close}>
+          <Link to={"/admin/settings"} className="hover:text-blue-800">
               Settings
             </Link>
           </li>
