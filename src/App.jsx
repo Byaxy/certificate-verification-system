@@ -32,9 +32,9 @@ const App = () => {
             </PrivateRoute>
           }
         >
-          <Route index element={<Dashboard/>} />
-          <Route path="certificates" element={<CertificateSection/>} />
-          <Route path="settings" element={<Settings/>} />
+          <Route index element={<Dashboard />} />
+          <Route path="certificates" element={<CertificateSection />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="/verify-certificate" element={<VerifyCertificate />} />
         <Route
