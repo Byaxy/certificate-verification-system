@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./Loader.css"
 
 function RecentActivity() {
   const [recentCertificates, setRecentCertificates] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  //  API URL (Replace with real backend endpoint)
-  const apiEndpoint = "https://api/certificates";
+  //  API
+  const apiEndpoint = "https://api/all-certificates";
 
   // Fetch and process certificates
   useEffect(() => {
@@ -33,9 +34,9 @@ function RecentActivity() {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto my-8 p-6 bg-white shadow-md rounded-lg">
+    <div className="max-w-6xl mx-auto my-8 p-6 bg-slate-900 text-white shadow-md rounded-lg">
       <div className="flex items-center justify-between">
-        <h2 className="sm:text-2xl text-xl font-bold text-gray-800 mb-4">
+        <h2 className="sm:text-2xl text-xl font-bold mb-4">
           Recent Activity
         </h2>
         <Link to={"/admin/certificates"}>
@@ -43,19 +44,19 @@ function RecentActivity() {
         </Link>
       </div>
       {loading ? (
-        <p className="text-gray-500">Loading recent certificates...</p>
+        <span className="loader"></span>
       ) : recentCertificates.length > 0 ? (
         <ul className="space-y-4">
           {recentCertificates.map((certificate) => (
             <li
-              key={certificate.certificateID}
+              key={certificate.id}
               className="p-4 bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100 transition"
             >
               <p className="text-lg font-semibold text-gray-700">
                 {certificate.name}
               </p>
               <p className="text-gray-600">
-                <strong>Course:</strong> {certificate.course}
+                <strong>Issuer:</strong> {certificate.issuer}
               </p>
               <p className="text-gray-500">
                 <strong>Issued On:</strong>{" "}

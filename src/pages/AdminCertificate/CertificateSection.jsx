@@ -13,8 +13,8 @@ const CertificateSection = () => {
   }, []);
 
   const fetchCertificates = async () => {
-    // Replace with your API endpoint
-    const response = await fetch("/api/certificates");
+    // Replace with endpoint
+    const response = await fetch("/api/all-certificates");
     return response.json();
   };
 
