@@ -26,7 +26,7 @@ const Login = () => {
       toast.success("Login successful!");
       navigate(redirectPath, { replace: true });
     } catch (error) {
-      toast.error(error);
+      toast.error(error.response.data.message || "Login failed");
       console.log("Login failed:", error);
     }
   };
