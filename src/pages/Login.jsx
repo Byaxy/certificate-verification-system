@@ -88,6 +88,9 @@ const Login = () => {
             >
               Forgot your password?
             </Link>
+            <Link to="/" className="text-primary hover:underline">
+              Back to Home
+            </Link>
           </div>
         </form>
       </div>

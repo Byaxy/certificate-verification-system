@@ -1,12 +1,17 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import api from "../api/axios";
+import { useState } from "react";
+import Certificate from "./Certificate";
 
 const VerifyCertificate = () => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [certificateData, setCertificateData] = useState(null);
   const {
     register,
     handleSubmit,
@@ -16,16 +21,21 @@ const VerifyCertificate = () => {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data.certificateId);
       const response = await api.get(`/certificate/${data.certificateId}`);
-      console.log(response);
-      reset();
-      toast.success("Certificate verified successfully");
+      if (response.status === 200 && response.data) {
+        toast.success("Certificate verified successfully");
+
+        setCertificateData(response.data);
+        setOpenDialog(true);
+        console.log(response.data);
+      }
     } catch (error) {
       toast.error(
-        error?.message || "An error occurred while verifying the certificate"
+        error?.response.data.message || "Error verifying certificate"
       );
       console.error("Error verifying certificate:", error);
+    } finally {
+      reset();
     }
   };
 
@@ -78,6 +88,18 @@ const VerifyCertificate = () => {
           </CardContent>
         </Card>
       </div>
+      {certificateData && (
+        <Dialog
+          open={openDialog}
+          onOpenChange={setOpenDialog}
+          className="relative z-50"
+        >
+          <DialogContent className="max-w-5xl">
+            <DialogTitle className="hidden">Certificate</DialogTitle>
+            <Certificate certificateData={certificateData} />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };

@@ -1,14 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@/components/ui/button";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-const Certificate = () => {
-  const certificateData = {
-    name: "JOHN DOE",
-    course: "WEB AND FRONT END DEVELOPMENT",
-    date: "Mar 18, 2022",
-  };
-
+const Certificate = ({ certificateData }) => {
   const handleDownload = async () => {
     const certificate = document.getElementById("certificate");
 
@@ -36,7 +31,7 @@ const Certificate = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 py-16 space-y-5">
+    <div className="w-full space-y-5 p-5">
       {/* Certificate */}
       <div
         id="certificate"
@@ -46,7 +41,7 @@ const Certificate = () => {
         <div className="absolute inset-0">
           {/* Top-left triangle */}
           <svg
-            className="absolute top-0 left-0 w-48 h-48"
+            className="absolute top-0 left-0 w-36 h-36 sm:w-48 sm:h-48"
             viewBox="0 0 192 192"
           >
             <path d="M0 0 L0 192 L192 0 Z" fill="url(#triangleGradient)" />
@@ -60,29 +55,35 @@ const Certificate = () => {
         </div>
 
         {/* Certificate Content */}
-        <div className="relative w-full h-full flex flex-col items-center justify-center">
-          <span className="text-sm mb-12">{certificateData.date}</span>
-
-          <h1 className="text-4xl font-bold mb-6 text-center uppercase tracking-wider">
-            {certificateData.name}
+        <div className="relative w-full h-full flex flex-col text-center items-center justify-center">
+          <span className="text-sm mb-8">
+            {new Date(certificateData.createdAt).toDateString()}
+          </span>
+          <h1 className="text-3xl font-semibold mb-6 text-center uppercase tracking-wider">
+            Certificate of Completion
           </h1>
+          <span className="text-gray-600 mb-2">
+            This certificate is to certify that
+          </span>
+          <h2 className="text-2xl text-primary underline font-semibold mb-2 text-center uppercase tracking-wider">
+            {certificateData.studentName}
+          </h2>
 
-          <span className="text-sm text-gray-600 mb-6">
-            successfully completed
+          <span className=" text-gray-600 mb-8">
+            has successfully completed an internship in the field of
           </span>
 
           {/* Course name with gradient */}
           <div className="mb-24">
-            <h2 className="text-2xl text-gray-600 font-medium text-center uppercase">
-              {certificateData.course}
+            <h2 className="text-3xl text-gray-700 font-medium text-center uppercase">
+              {certificateData.internshipDomain}
             </h2>
           </div>
 
           {/* Footer */}
           <div className="w-full h-full flex items-end justify-end">
             <span className="text-sm text-gray-600">
-              a course by{" "}
-              <span className="font-bold text-primary">CVerify</span>
+              Issued by <span className="font-bold text-primary">CVerify</span>
             </span>
           </div>
         </div>

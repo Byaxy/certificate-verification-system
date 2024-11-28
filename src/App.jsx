@@ -11,7 +11,6 @@ import VerifyCertificate from "./pages/VerifyCertificate";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
-import Certificate from "./pages/Certificate";
 import Header from "./components/Header";
 import CertificateSection from "./pages/AdminCertificate/CertificateSection";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -60,10 +59,6 @@ const App = () => {
           <Route path="quick_guide" element={<QuickGuide />} />
         </Route>
         <Route path="/verify-certificate" element={<VerifyCertificate />} />
-        <Route
-          path="/verify-certificate/:certificateId"
-          element={<Certificate />}
-        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
