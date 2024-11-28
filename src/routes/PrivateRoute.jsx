@@ -1,20 +1,26 @@
 /* eslint-disable react/prop-types */
 import { Navigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Loading from "../components/Loading";
 
 const PrivateRoute = ({ children }) => {
-  // const { isLoggedIn, isAdmin: userIsAdmin } = useAuth();
-  const isLoggedIn = true;
-  const isAdmin = false;
+  const { isAuthenticated, isLoading, isAdmin } = useAuth();
 
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />;
+  if (isLoading) {
+    return (
+      <div className="w-full flex items-center justify-center py-6">
+        <Loading />
+      </div>
+    );
   }
 
-  if (isAdmin && isLoggedIn) {
-    return <Navigate to="/admin" />;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ path: location.pathname }} replace />;
   }
 
-  return children;
+  if (isAdmin && isAuthenticated) {
+    return children;
+  }
 };
 
 export default PrivateRoute;

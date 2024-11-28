@@ -7,11 +7,10 @@ import {
 } from "@/components/ui/popover";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import userImage from "../assets/user.png";
+import useAuth from "../hooks/useAuth";
 
 const Header = () => {
-  const user = {
-    email: "John@example.com",
-  };
+  const { isLoading, logout, user } = useAuth();
 
   const location = useLocation();
 
@@ -62,8 +61,18 @@ const Header = () => {
                     </PopoverContent>
                   </Popover>
                 </div>
-                <Button className="bg-red-600 text-white px-6 py-1.5 rounded-md hover:bg-red-700 transition-colors duration-200">
-                  Logout
+                <Button
+                  className="bg-red-600 text-white px-6 py-1.5 rounded-md hover:bg-red-700 transition-colors duration-200"
+                  onClick={logout}
+                >
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <span className="animate-spin h-5 w-5 mr-3 border-t-2 border-b-2 border-white rounded-full" />
+                      <span>Logging out...</span>
+                    </div>
+                  ) : (
+                    "Logout"
+                  )}
                 </Button>
               </>
             ) : (

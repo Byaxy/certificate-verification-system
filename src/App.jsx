@@ -33,9 +33,30 @@ const App = () => {
             </PrivateRoute>
           }
         >
-          <Route index element={<Dashboard />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="certificates" element={<CertificateSection />} />
+          <Route
+            index
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="settings"
+            element={
+              <PrivateRoute>
+                <Settings />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="certificates"
+            element={
+              <PrivateRoute>
+                <CertificateSection />
+              </PrivateRoute>
+            }
+          />
           <Route path="quick_guide" element={<QuickGuide />} />
         </Route>
         <Route path="/verify-certificate" element={<VerifyCertificate />} />

@@ -2,15 +2,38 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import loginImage from "../assets/login.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectPath = location.state?.path || "/admin";
+
+  const onSubmit = async (data) => {
+    try {
+      await login.mutateAsync(data);
+
+      toast.success("Login successful!");
+      navigate(redirectPath, { replace: true });
+    } catch (error) {
+      toast.error(error);
+      console.log("Login failed:", error);
+    }
+  };
+
+  if (isAuthenticated) {
+    navigate(redirectPath, { replace: true });
+  }
 
   return (
     <div className="flex h-screen">
@@ -42,19 +65,23 @@ const Login = () => {
             </span>
           )}
           <div className="w-full">
-            <Button type="submit" size="lg" className="w-full">
-              Login
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center">
+                  <span className="animate-spin h-5 w-5 mr-3 border-t-2 border-b-2 border-white rounded-full" />
+                  Logining in...
+                </div>
+              ) : (
+                "Login"
+              )}
             </Button>
           </div>
           <div className="flex flex-col-reverse sm:flex-row justify-between pt-2 gap-5 text-sm">
-            <div>
-              <span className="text-gray-600">
-                Don&apos;t have an account?{" "}
-              </span>{" "}
-              <Link to="/signup" className="text-primary hover:underline">
-                Sign up
-              </Link>
-            </div>
             <Link
               to="/forgot-password"
               className="text-red-500 hover:underline"

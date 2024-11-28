@@ -1,13 +1,13 @@
 import DashboardContent from "./DashboardContent";
 
 const Dashboard = () => {
-    return (
-      <div className="flex flex-col">
-        <div className="">  
-          <DashboardContent/>
-        </div>
+  return (
+    <div className="flex flex-col">
+      <div className="">
+        <DashboardContent />
       </div>
-    );
-  };
-  
-  export default Dashboard;
+    </div>
+  );
+};
+
+export default Dashboard;

@@ -3,14 +3,31 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import api from "../api/axios";
 
 const VerifyCertificate = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (data) => {
+    try {
+      console.log(data.certificateId);
+      const response = await api.get(`/certificate/${data.certificateId}`);
+      console.log(response);
+      reset();
+      toast.success("Certificate verified successfully");
+    } catch (error) {
+      toast.error(
+        error?.message || "An error occurred while verifying the certificate"
+      );
+      console.error("Error verifying certificate:", error);
+    }
+  };
 
   return (
     <div className="flex h-[90vh] items-center justify-center">
@@ -42,8 +59,20 @@ const VerifyCertificate = () => {
                   </span>
                 )}
               </div>
-              <Button type="submit" size="lg" className="w-full">
-                {"Search Certificate"}
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center">
+                    <span className="animate-spin h-5 w-5 mr-3 border-t-2 border-b-2 border-white rounded-full" />
+                    Searching...
+                  </div>
+                ) : (
+                  "Search Certificate"
+                )}
               </Button>
             </form>
           </CardContent>

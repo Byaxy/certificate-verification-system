@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RecentActivity from "./RecentActivity";
-import "./Loader.css"
+import "./Loader.css";
 import HowitWorks from "../QuickGuide/HowitWorks";
 import BulkUpload from "../../components/BulkUpload/BulkUpload";
 
@@ -43,9 +43,7 @@ const DashboardContent = () => {
             {loading ? (
               <span className="loader ml-8"></span>
             ) : (
-              <p className="sm:text-2xl text-xl">
-                {totalCertificates}
-              </p>
+              <p className="sm:text-2xl text-xl">{totalCertificates}</p>
             )}
           </div>
           <div className="bg-white p-4 rounded-lg border-t shadow-md sm:h-[140px] h-[100px] flex flex-col justify-center">
@@ -61,15 +59,15 @@ const DashboardContent = () => {
             <p className="sm:text-2xl text-xl">20</p>
           </div>
         </div>
-        
+
         <div className="mb-4">
           <RecentActivity />
         </div>
         <div className="my-10">
-          <BulkUpload/>
+          <BulkUpload />
         </div>
         <div>
-          <HowitWorks/>
+          <HowitWorks />
         </div>
       </div>
     </main>
