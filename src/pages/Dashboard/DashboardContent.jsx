@@ -5,7 +5,7 @@ import Loading from "../../components/Loading";
 
 const DashboardContent = () => {
   const { data, isLoading, error } = useFetchAllCertificates();
-  console.log(data?.data.results);
+  // console.log(data?.data.results);
 
   if (error)
     return (
