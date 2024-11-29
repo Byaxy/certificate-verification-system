@@ -81,13 +81,7 @@ const Login = () => {
               )}
             </Button>
           </div>
-          <div className="flex flex-col-reverse sm:flex-row justify-between pt-2 gap-5 text-sm">
-            <Link
-              to="/forgot-password"
-              className="text-red-500 hover:underline"
-            >
-              Forgot your password?
-            </Link>
+          <div className="flex text-sm">
             <Link to="/" className="text-primary hover:underline">
               Back to Home
             </Link>

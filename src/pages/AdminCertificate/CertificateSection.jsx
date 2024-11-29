@@ -1,74 +1,94 @@
-import { useState, useEffect } from "react";
-import CertificateTable from "./CertificateTable";
+import { useState } from "react";
+import ViewCertificate from "../../components/ViewCertificate";
+import DataTable from "react-data-table-component";
+import Loading from "../../components/Loading";
+import { useFetchAllCertificates } from "../../hooks/useCertificates";
+import { customTableStyles } from "../../styles/customTableSyales";
 import CertificateModal from "./CertificateModal";
 
 const CertificateSection = () => {
-  const [certificates, setCertificates] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedCertificate, setSelectedCertificate] = useState({});
+  const { data, isLoading, error } = useFetchAllCertificates();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  useEffect(() => {
-    // Fetch certificates from API
-    fetchCertificates().then((data) => setCertificates(data));
-  }, []);
+  const columns = [
+    {
+      name: "Certificate ID",
+      selector: (row) => row.certificateID,
+      sortable: true,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.studentName,
+      sortable: true,
+    },
+    {
+      name: "Domain",
+      selector: (row) => row.internshipDomain,
+      sortable: true,
+    },
+    {
+      name: "Start Date",
+      selector: (row) => new Date(row.startDate).toDateString(),
+      sortable: true,
+    },
+    {
+      name: "End Date",
+      selector: (row) => new Date(row.endDate).toDateString(),
+      sortable: true,
+    },
+  ];
 
-  const fetchCertificates = async () => {
-    // Replace with endpoint
-    const response = await fetch("/api/all-certificates");
-    return response.json();
-  };
-
-  const handleAddCertificate = () => {
-    setShowModal(true);
-  };
-
-  const handleEditCertificate = (certificate) => {
-    setSelectedCertificate(certificate);
-    setShowModal(true);
-  };
-
-  const handleDeleteCertificate = (certificateId) => {
-    // Replace with your API endpoint
-    fetch(`/api/certificates/${certificateId}`, { method: "DELETE" }).then(
-      () => {
-        setCertificates(certificates.filter((c) => c.id !== certificateId));
-      }
+  if (error)
+    return (
+      <div className="wrapper w-full flex items-center text-red-500 font-semibold py-6">
+        Error: {error}
+      </div>
     );
+
+  const certificatesData = data?.data.data || [];
+  const certificatesCount = data?.data.results || 0;
+
+  const onRowClicked = (row) => {
+    setSelectedCertificate(row);
+    setOpenDialog(true);
   };
 
   return (
-    <div className="p-4 m-4 rounded border-2 shadow-md">
-      <h1 className="text-2xl font-bold mb-4">Certificates</h1>
-      <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-          onClick={handleAddCertificate}
-        >
-          Add Certificate
-        </button>
-      </div>
-      <CertificateTable
-        certificates={certificates}
-        onEdit={handleEditCertificate}
-        onDelete={handleDeleteCertificate}
-      />
-      {showModal && (
-        <CertificateModal
-          certificate={selectedCertificate}
-          onClose={() => setShowModal(false)}
-          onSave={(certificate) => {
-            // Replace with your API endpoint
-            fetch("/api/certificates", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(certificate),
-            }).then(() => {
-              setCertificates([...certificates, certificate]);
-              setShowModal(false);
-            });
-          }}
+    <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="my-8 p-6 shadow-md rounded-lg">
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="sm:text-2xl text-xl font-bold mb-4 text-gray-800">
+            Certificates{" "}
+            <span className="text-gray-600 text-lg">({certificatesCount})</span>
+          </h2>
+          <CertificateModal />
+        </div>
+
+        {isLoading ? (
+          <Loading />
+        ) : certificatesData.length === 0 ? (
+          <div className="wrapper w-full flex items-center text-primary font-semibold py-6">
+            No recent certificates found.
+          </div>
+        ) : (
+          <DataTable
+            columns={columns}
+            data={certificatesData}
+            customStyles={customTableStyles}
+            pagination
+            paginationPerPage={5}
+            paginationRowsPerPageOptions={[5, 10, 15, 20]}
+            onRowClicked={onRowClicked}
+          />
+        )}
+
+        <ViewCertificate
+          certificateData={selectedCertificate}
+          openDialog={openDialog}
+          setOpenDialog={setOpenDialog}
         />
-      )}
+      </div>
     </div>
   );
 };

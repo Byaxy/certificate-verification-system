@@ -1,13 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import api from "../api/axios";
 import { useState } from "react";
-import Certificate from "./Certificate";
+import ViewCertificate from "../components/ViewCertificate";
 
 const VerifyCertificate = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -40,7 +39,7 @@ const VerifyCertificate = () => {
   };
 
   return (
-    <div className="flex h-[90vh] items-center justify-center">
+    <div className="flex flex-col h-[90vh] items-center justify-center">
       <div className="container max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r to-primary from-gray-900 bg-clip-text text-transparent mb-2">
@@ -88,18 +87,11 @@ const VerifyCertificate = () => {
           </CardContent>
         </Card>
       </div>
-      {certificateData && (
-        <Dialog
-          open={openDialog}
-          onOpenChange={setOpenDialog}
-          className="relative z-50"
-        >
-          <DialogContent className="max-w-5xl">
-            <DialogTitle className="hidden">Certificate</DialogTitle>
-            <Certificate certificateData={certificateData} />
-          </DialogContent>
-        </Dialog>
-      )}
+      <ViewCertificate
+        certificateData={certificateData}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
     </div>
   );
 };

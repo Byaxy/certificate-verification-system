@@ -15,27 +15,23 @@ const DashboardHeader = ({ active, OpenMenu, CloseMenu }) => {
               <li className="ml-4 hover:scale-105 transition-all">Dashboard</li>
             </Link>
             <Link to={"/admin/certificates"}>
-              <li className="ml-4 hover:scale-105 transition-all">Certificates</li>
-            </Link>
-            <Link to={"/admin/quick_guide"}>
-              <li className="ml-4 hover:scale-105 transition-all">Quick Guide</li>
-            </Link>
-            <Link to={"/admin/settings"}>
-              <li className="ml-4 hover:scale-105 transition-all">Settings</li>
+              <li className="ml-4 hover:scale-105 transition-all">
+                Certificates
+              </li>
             </Link>
           </ul>
         </nav>
       </div>
       {active ? (
         <div
-          className="absolute top-3 text-[26px] sm:right-10 right-5 md:hidden block z-30"
+          className="absolute top-3 text-[26px] sm:right-10 right-5 md:hidden block z-30 cursor-pointer"
           onClick={CloseMenu}
         >
-          <IconClose/>
+          <IconClose />
         </div>
       ) : (
         <div
-          className="absolute top-3 text-[26px] sm:right-10 right-5 md:hidden block z-30"
+          className="absolute top-3 text-[26px] sm:right-10 right-5 md:hidden block z-30 cursor-pointer"
           onClick={OpenMenu}
         >
           <IconMenu />

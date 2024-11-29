@@ -1,73 +1,98 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import "./Loader.css"
+import { Button } from "@/components/ui/button";
+import Loading from "../../components/Loading";
+import { useFetchAllCertificates } from "../../hooks/useCertificates";
+import DataTable from "react-data-table-component";
+import { customTableStyles } from "../../styles/customTableSyales";
+import { useState } from "react";
+import ViewCertificate from "../../components/ViewCertificate";
 
 function RecentActivity() {
-  const [recentCertificates, setRecentCertificates] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, error } = useFetchAllCertificates();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
 
-  //  API
-  const apiEndpoint = "https://api/all-certificates";
+  const columns = [
+    {
+      name: "Certificate ID",
+      selector: (row) => row.certificateID,
+      sortable: true,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.studentName,
+      sortable: true,
+    },
+    {
+      name: "Domain",
+      selector: (row) => row.internshipDomain,
+      sortable: true,
+    },
+    {
+      name: "Start Date",
+      selector: (row) => new Date(row.startDate).toDateString(),
+      sortable: true,
+    },
+    {
+      name: "End Date",
+      selector: (row) => new Date(row.endDate).toDateString(),
+      sortable: true,
+    },
+  ];
 
-  // Fetch and process certificates
-  useEffect(() => {
-    const fetchRecentCertificates = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(apiEndpoint); // Fetch data from the API
-        const data = await response.json();
+  if (error)
+    return (
+      <div className="wrapper w-full flex items-center text-red-500 font-semibold py-6">
+        Error: {error}
+      </div>
+    );
 
-        // Sort certificates by issueDate (descending) and pick the top 5
-        const sortedCertificates = data
-          .sort((a, b) => new Date(b.issueDate) - new Date(a.issueDate))
-          .slice(0, 5); // Get the top 5 most recent certificates
+  const certificatesData = data?.data.data || [];
 
-        setRecentCertificates(sortedCertificates);
-      } catch (error) {
-        console.error("Error fetching certificates:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecentCertificates();
-  }, []);
+  const onRowClicked = (row) => {
+    setSelectedCertificate(row);
+    setOpenDialog(true);
+  };
 
   return (
-    <div className="max-w-6xl mx-auto my-8 p-6 bg-slate-900 text-white shadow-md rounded-lg">
-      <div className="flex items-center justify-between">
+    <div className="my-8 p-6 shadow-md rounded-lg">
+      <div className="flex items-center justify-between mb-5">
         <h2 className="sm:text-2xl text-xl font-bold mb-4">
-          Recent Activity
+          Recent Certificates
         </h2>
         <Link to={"/admin/certificates"}>
-          <button className="border-2 rounded-sm border-blue-700 text-[14px] sm:text-base sm:px-4 px-3 sm:py-1.5 py-1 hover:bg-blue-700 hover:text-white transition-all">View All</button>
+          <Button
+            variant="outline"
+            className="text-sm sm:text-base sm:px-4 px-3 sm:py-1.5 py-1 text-primary border-primary hover:text-primary/90 hover:border-primary/90"
+          >
+            View All
+          </Button>
         </Link>
       </div>
-      {loading ? (
-        <span className="loader"></span>
-      ) : recentCertificates.length > 0 ? (
-        <ul className="space-y-4">
-          {recentCertificates.map((certificate) => (
-            <li
-              key={certificate.id}
-              className="p-4 bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100 transition"
-            >
-              <p className="text-lg font-semibold text-gray-700">
-                {certificate.name}
-              </p>
-              <p className="text-gray-600">
-                <strong>Issuer:</strong> {certificate.issuer}
-              </p>
-              <p className="text-gray-500">
-                <strong>Issued On:</strong>{" "}
-                {new Date(certificate.issueDate).toLocaleDateString()}
-              </p>
-            </li>
-          ))}
-        </ul>
+
+      {isLoading ? (
+        <Loading />
+      ) : certificatesData.length === 0 ? (
+        <div className="wrapper w-full flex items-center text-primary font-semibold py-6">
+          No recent certificates found.
+        </div>
       ) : (
-        <p className="text-gray-500">No recent certificates found.</p>
+        <DataTable
+          columns={columns}
+          data={certificatesData}
+          customStyles={customTableStyles}
+          pagination
+          paginationPerPage={10}
+          paginationRowsPerPageOptions={[10, 15, 20]}
+          onRowClicked={onRowClicked}
+        />
       )}
+
+      <ViewCertificate
+        certificateData={selectedCertificate}
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+      />
     </div>
   );
 }

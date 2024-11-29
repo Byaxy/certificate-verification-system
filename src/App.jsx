@@ -8,15 +8,10 @@ import Login from "./pages/Login";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import VerifyCertificate from "./pages/VerifyCertificate";
-import Signup from "./pages/Signup";
-import ForgotPassword from "./pages/ForgotPassword";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import CertificateSection from "./pages/AdminCertificate/CertificateSection";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Settings from "./pages/AdminSettings/Settings";
-import QuickGuide from "./pages/QuickGuide/QuickGuide";
-//import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -41,14 +36,6 @@ const App = () => {
             }
           />
           <Route
-            path="settings"
-            element={
-              <PrivateRoute>
-                <Settings />
-              </PrivateRoute>
-            }
-          />
-          <Route
             path="certificates"
             element={
               <PrivateRoute>
@@ -56,15 +43,11 @@ const App = () => {
               </PrivateRoute>
             }
           />
-          <Route path="quick_guide" element={<QuickGuide />} />
         </Route>
         <Route path="/verify-certificate" element={<VerifyCertificate />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      {/* <Footer /> */}
     </Router>
   );
 };

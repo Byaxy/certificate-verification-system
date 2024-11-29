@@ -14,7 +14,7 @@ const AdminDashboard = () => {
         CloseMenu={() => setActive(false)}
       />
       <div
-        className={`h-[100dvh]  md:hidden block transition-all  top-0 absolute ${
+        className={`h-[100dvh]  md:hidden block transition-all  top-0 absolute z-[100] ${
           active ? "right-0" : "right-[-256px]"
         } `}
       >
