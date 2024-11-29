@@ -19,6 +19,11 @@ const DashboardHeader = ({ active, OpenMenu, CloseMenu }) => {
                 Certificates
               </li>
             </Link>
+            <Link to={"/verify-certificate"}>
+              <li className="ml-4 hover:scale-105 transition-all">
+                Verify Certificate
+              </li>
+            </Link>
           </ul>
         </nav>
       </div>

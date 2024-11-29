@@ -11,6 +11,9 @@ const DashboardSidebar = ({ close }) => {
         <li className="mb-4 hover:text-blue-800 text-white" onClick={close}>
           <Link to={"/admin/certificates"}>Certificates</Link>
         </li>
+        <li className="mb-4 hover:text-blue-800 text-white" onClick={close}>
+          <Link to={"/verify-certificate"}>Verify Certificate</Link>
+        </li>
       </ul>
     </aside>
   );
