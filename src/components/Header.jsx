@@ -33,6 +33,18 @@ const Header = () => {
             </span>
           </Link>
 
+          {/* Nav Section */}
+          {!["/admin", "/admin/certificates"].includes(location.pathname) && (
+            <nav className="hidden sm:flex gap-4 items-center">
+              <Link
+                to="/admin"
+                className="text-sm text-gray-600 hover:text-primary"
+              >
+                Dashboard
+              </Link>
+            </nav>
+          )}
+
           {/* Auth Section */}
           <div className="flex items-center gap-4">
             {user ? (

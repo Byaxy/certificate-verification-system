@@ -26,7 +26,6 @@ const VerifyCertificate = () => {
 
         setCertificateData(response.data);
         setOpenDialog(true);
-        console.log(response.data);
       }
     } catch (error) {
       toast.error(
