@@ -9,7 +9,7 @@ import {
 export const useFetchAllCertificates = () => {
   return useQuery({
     queryKey: ["certificates"],
-    queryFn: fetchAllCertificates,
+    queryFn: () => fetchAllCertificates,
     staleTime: 1000 * 60 * 60 * 24, // Set stale time to 24 hours
     cacheTime: 1000 * 60 * 60 * 24, // Keep data in cache for 24 hours
     refetchOnWindowFocus: false, // Disable refetch on window focus
